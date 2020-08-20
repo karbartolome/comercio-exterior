@@ -8,6 +8,7 @@ import dash_html_components as html
 import pandas as pd
 from pyvis.network import Network
 import visdcc
+import numpy as np
 #import re
 #import dash_table
 #import networkx as nx 
