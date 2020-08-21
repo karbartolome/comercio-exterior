@@ -106,7 +106,6 @@ app.layout = html.Div([
 def update_output(value):
     
     dffilt = df[df.section==value].copy()
-    dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
     
     vertices=dffilt.groupby(['reporter','continent_reporter'], as_index=False).export_value_usd.sum().copy()
     vertices.columns = ['pais','continente','export_value_usd']
@@ -122,6 +121,8 @@ def update_output(value):
                                    ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0'], 
                                    default='other')
     vertices['label']=[human_format(i) for i in vertices.export_value_usd]
+    
+    dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
 
     network = Network(bgcolor="white",font_color="black",notebook=False,directed=True)
     edge_data = zip(dffilt['reporter'], dffilt['partner'], dffilt['export_value_usd'])
