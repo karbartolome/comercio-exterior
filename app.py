@@ -17,22 +17,21 @@ import numpy as np
 
 
 df=pd.read_csv('df.csv').drop('Unnamed: 0',axis=1)
-df=df[~df.export_value_usd.isna()].copy()
+df = df[df.section=='Chemical Products'].copy()
 
-
-vertices = list(set(list(df.reporter_iso)+list(df.partner_iso)))
+vertices = list(set(list(df.reporter)+list(df.partner)))
 vertices = pd.DataFrame({'pais':vertices})
-vertices=df.groupby('reporter_iso', as_index=False).export_value_usd.sum()
+vertices=df.groupby('reporter', as_index=False).export_value_usd.sum()
 vertices.columns = ['pais','export_value_usd']
 vertices['export_value_usd'] = np.where(vertices.export_value_usd==0, 10, vertices.export_value_usd)
 
-vertices['color'] = np.where(vertices.pais == 'arg', 'orange','palegreen')
+vertices['color'] = np.where(vertices.pais == 'Argentina', 'blue','palegreen')
 vertices['size'] = pd.qcut(vertices['export_value_usd'], 4, labels=[10,100,1000,2000])
 
-
+df=df.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
 
 network = Network(
-    height="750px", 
+    height="1200px", 
     width="100%", 
     bgcolor="white", 
     font_color="black",
@@ -40,8 +39,8 @@ network = Network(
     directed=True
 )
 
-sources = df['reporter_iso']
-targets = df['partner_iso']
+sources = df['reporter']
+targets = df['partner']
 weights = df['export_value_usd']
 
 edge_data = zip(sources, targets, weights)
@@ -102,7 +101,9 @@ config_layout={
 
 
 # ======= APP =======
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div(children=[
