@@ -15,27 +15,19 @@ import numpy as np
 #import plotly.express as px
 #import plotly.graph_objs as go
 
+def human_format(number):
+    if number!=0:
+        units = ['', 'K', 'M', 'G', 'T', 'P']
+        k = 1000.0
+        magnitude = int(floor(log(number, k)))
+        return '%.1f%s' % (number / k**magnitude, units[magnitude])
+    else:
+        return 0
 
 df = pd.read_csv('df.csv').drop('Unnamed: 0', axis=1)
 df = df[df.reporter!=df.partner].copy()
+
 sections = pd.DataFrame({'section': df['section'].unique()}).sort_values('section')
-
-
-vertices=df.groupby(['reporter','continent_reporter'], as_index=False).export_value_usd.sum()
-vertices.columns = ['pais','continente','export_value_usd']
-vertices['export_value_usd'] = np.where(vertices.export_value_usd==0, 10, vertices.export_value_usd)
-vertices['size'] = pd.qcut(vertices['export_value_usd'], 4, labels=[10,100,1000,2000])
-vertices['color'] = np.select([vertices.continente == 'Asia', 
-                               vertices.continente == 'Africa', 
-                               vertices.continente == 'Americas',
-                               vertices.continente == 'Europe',
-                               vertices.continente == 'Oceania'],
-                               ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0'], 
-                               default='other')
-
-
-dffilt = df[df.section=='Chemical Products'].copy()
-dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
 
 network = Network( 
     bgcolor="white", 
@@ -44,25 +36,6 @@ network = Network(
     directed=True
 )
 
-edge_data = zip(dffilt['reporter'], 
-                dffilt['partner'], 
-                dffilt['export_value_usd'])
-
-for e in edge_data:
-    src = e[0]
-    dst = e[1]
-    w = e[2]
-
-    network.add_node(src, src, title=src)
-    network.add_node(dst, dst, title=dst)
-    network.add_edge(src, dst, value=w)
-
-# add neighbor data to node hover data
-for node in network.nodes:
-    if node['id'] in list(vertices['pais']):
-        node['value']=int(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
-        node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
-        node['color']=str(vertices.loc[vertices.pais==node['id'],'color'].values[0])
 
 config_layout={
    'height': '1000px', 'width': '100%',
@@ -132,6 +105,22 @@ def update_output(value):
     
     dffilt = df[df.section==value].copy()
     dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
+    
+    vertices=dffilt.groupby(['reporter','continent_reporter'], as_index=False).export_value_usd.sum().copy()
+    vertices.columns = ['pais','continente','export_value_usd']
+    vertices2=dffilt.loc[~dffilt.partner.isin(vertices.pais.unique()),['partner','continent_partner']]
+    vertices2['export_value_usd']=0
+    vertices2.columns = ['pais','continente','export_value_usd']
+    vertices = pd.concat([vertices,vertices2],axis=0)
+    vertices['color'] = np.select([vertices.continente == 'Asia', 
+                                   vertices.continente == 'Africa', 
+                                   vertices.continente == 'Americas',
+                                   vertices.continente == 'Europe',
+                                   vertices.continente == 'Oceania'],
+                                   ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0'], 
+                                   default='other')
+    vertices['label']=[human_format(i) for i in vertices.export_value_usd]
+
     network = Network(bgcolor="white",font_color="black",notebook=False,directed=True)
     edge_data = zip(dffilt['reporter'], dffilt['partner'], dffilt['export_value_usd'])
 
@@ -146,7 +135,7 @@ def update_output(value):
     for node in network.nodes:
         if node['id'] in list(vertices['pais']):
             node['value']=int(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
-            node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
+            node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'label'].values[0])
             node['color']=str(vertices.loc[vertices.pais==node['id'],'color'].values[0])
 
     data ={'nodes': network.nodes,
