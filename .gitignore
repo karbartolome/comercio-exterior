@@ -1,4 +1,3 @@
 *.Rhistory
 *.ipynb_checkpoints
-*.ipynb
-*.r
+*.html
