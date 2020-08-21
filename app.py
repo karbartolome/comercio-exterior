@@ -9,6 +9,8 @@ import pandas as pd
 from pyvis.network import Network
 import visdcc
 import numpy as np
+from math import log, floor
+
 #import re
 #import dash_table
 #import networkx as nx 
