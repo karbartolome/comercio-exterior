@@ -4,7 +4,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-#from dash.dependencies import Input,Output,State
+from dash.dependencies import Input,Output,State
 import pandas as pd
 from pyvis.network import Network
 import visdcc
@@ -16,36 +16,37 @@ import numpy as np
 #import plotly.graph_objs as go
 
 
-df=pd.read_csv('df.csv').drop('Unnamed: 0',axis=1)
-df=df[df.reporter!=df.partner].copy()
+df = pd.read_csv('df.csv').drop('Unnamed: 0', axis=1)
+df = df[df.reporter!=df.partner].copy()
+sections = pd.DataFrame({'section': df['section'].unique()}).sort_values('section')
 
 
-df = df[df.section=='Chemical Products'].copy()
-
-vertices = list(set(list(df.reporter)+list(df.partner)))
-vertices = pd.DataFrame({'pais':vertices})
-vertices=df.groupby('reporter', as_index=False).export_value_usd.sum()
-vertices.columns = ['pais','export_value_usd']
+vertices=df.groupby(['reporter','continent_reporter'], as_index=False).export_value_usd.sum()
+vertices.columns = ['pais','continente','export_value_usd']
 vertices['export_value_usd'] = np.where(vertices.export_value_usd==0, 10, vertices.export_value_usd)
+vertices['size'] = pd.qcut(vertices['export_value_usd'], 4, labels=[10,100,1000,2000])
+vertices['color'] = np.select([vertices.continente == 'Asia', 
+                               vertices.continente == 'Africa', 
+                               vertices.continente == 'Americas',
+                               vertices.continente == 'Europe',
+                               vertices.continente == 'Oceania'],
+                               ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0'], 
+                               default='other')
 
-vertices['color'] = np.where(vertices.pais == 'Argentina', 'blue','palegreen')
 
-df=df.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
+dffilt = df[df.section=='Chemical Products'].copy()
+dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
 
-network = Network(
-    height="1200px", 
-    width="100%", 
+network = Network( 
     bgcolor="white", 
     font_color="black",
-    notebook=False, 
+    notebook=True, 
     directed=True
 )
 
-sources = df['reporter']
-targets = df['partner']
-weights = df['export_value_usd']
-
-edge_data = zip(sources, targets, weights)
+edge_data = zip(dffilt['reporter'], 
+                dffilt['partner'], 
+                dffilt['export_value_usd'])
 
 for e in edge_data:
     src = e[0]
@@ -54,9 +55,7 @@ for e in edge_data:
 
     network.add_node(src, src, title=src)
     network.add_node(dst, dst, title=dst)
-    network.add_edge(src, dst, value=w, label=w)
-
-neighbor_map = network.get_adj_list()
+    network.add_edge(src, dst, value=w)
 
 # add neighbor data to node hover data
 for node in network.nodes:
@@ -65,9 +64,8 @@ for node in network.nodes:
         node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
         node['color']=str(vertices.loc[vertices.pais==node['id'],'color'].values[0])
 
-
 config_layout={
-   'height': '600px', 'width': '100%',
+   'height': '1000px', 'width': '100%',
    "nodes": {
        "borderWidth": 0,
        "borderWidthSelected": 7,
@@ -108,14 +106,54 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
-app.layout = html.Div(children=[
-    html.H1('Comercio exterior - 2018 (usd)'),
+app.layout = html.Div([
+    html.H1('Relaciones comerciales'),
+    html.H4('Red de exportaciones por tipo exportación (2018, USD)'),
+    html.Div([
+        html.Div([
+            dcc.Dropdown(id ='input_section',
+                         options=[{'label': i, 'value': i} for i in sections.section.unique()],
+                         multi=False,
+                         value='Chemical Products',
+                         clearable=False),
+        ], className='six columns'),
+    ], className='row'),
     visdcc.Network(id='network',
-                   data={'nodes': network.nodes,
-                         'edges': network.edges
-                         },
+                   data={'nodes': network.nodes,'edges': network.edges},
                    options=config_layout)
 ])
+
+
+@app.callback(
+    Output('network', 'data'),
+    [Input('input_section', 'value')]
+)
+def update_output(value):
+    
+    dffilt = df[df.section==value].copy()
+    dffilt = dffilt.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
+    network = Network(bgcolor="white",font_color="black",notebook=False,directed=True)
+    edge_data = zip(dffilt['reporter'], dffilt['partner'], dffilt['export_value_usd'])
+
+    for e in edge_data:
+        src = e[0]
+        dst = e[1]
+        w = e[2]
+        network.add_node(src, src, title=src)
+        network.add_node(dst, dst, title=dst)
+        network.add_edge(src, dst, value=w)
+
+    for node in network.nodes:
+        if node['id'] in list(vertices['pais']):
+            node['value']=int(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
+            node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
+            node['color']=str(vertices.loc[vertices.pais==node['id'],'color'].values[0])
+
+    data ={'nodes': network.nodes,
+           'edges': network.edges}
+    
+    return data
+
 
 
 if __name__ == '__main__':
