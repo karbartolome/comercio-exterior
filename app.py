@@ -17,6 +17,9 @@ import numpy as np
 
 
 df=pd.read_csv('df.csv').drop('Unnamed: 0',axis=1)
+df=df[df.reporter!=df.partner].copy()
+
+
 df = df[df.section=='Chemical Products'].copy()
 
 vertices = list(set(list(df.reporter)+list(df.partner)))
@@ -26,7 +29,6 @@ vertices.columns = ['pais','export_value_usd']
 vertices['export_value_usd'] = np.where(vertices.export_value_usd==0, 10, vertices.export_value_usd)
 
 vertices['color'] = np.where(vertices.pais == 'Argentina', 'blue','palegreen')
-vertices['size'] = pd.qcut(vertices['export_value_usd'], 4, labels=[10,100,1000,2000])
 
 df=df.sort_values('export_value_usd',ascending=False).head(300).reset_index(drop=True).copy()
 
@@ -59,7 +61,7 @@ neighbor_map = network.get_adj_list()
 # add neighbor data to node hover data
 for node in network.nodes:
     if node['id'] in list(vertices['pais']):
-        node['value']=int(vertices.loc[vertices.pais==node['id'],'size'].values[0])
+        node['value']=int(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
         node['title']=node['title']+"<br>Export: "+str(vertices.loc[vertices.pais==node['id'],'export_value_usd'].values[0])
         node['color']=str(vertices.loc[vertices.pais==node['id'],'color'].values[0])
 
@@ -107,7 +109,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div(children=[
-    html.H1('Comercio exterior'),
+    html.H1('Comercio exterior - 2018 (usd)'),
     visdcc.Network(id='network',
                    data={'nodes': network.nodes,
                          'edges': network.edges
