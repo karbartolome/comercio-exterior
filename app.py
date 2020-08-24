@@ -85,6 +85,7 @@ server = app.server
 app.layout = html.Div([
     html.H1('Red de exportaciones'),
     html.H4('Exportaciones por tipo exportación (2018, USD). Por categoría seleccionada se muestran las exportaciones principales'),
+    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')]),
     html.Div([
         html.Div([
             dcc.Dropdown(id ='input_section',
@@ -92,17 +93,29 @@ app.layout = html.Div([
                          multi=False,
                          value='Chemical Products',
                          clearable=False),
+            
+        ], className='four columns'),
+        html.Div([
              visdcc.Network(id='network',
                    data={'nodes': network.nodes,'edges': network.edges},
                    options=config_layout)
-        ], className='six columns'),
+        ], className='twelve columns')
+    ]),
+    html.Div([
         html.Div([
             html.H3('Clustering - Kmeans'),
-            html.P('Segmentación en base a la centralidad de los países en cada rama de comercio (out degree centrality)'),
-            html.Iframe(src='assets/mapa1.html', 
-                    style={'border': 'none', 'width': '100%', 'height': 600,'white-space':' pre-wrap'}) 
-        ], className='six columns')
-    ], className='row'),
+            html.P('Segmentación en base a la centralidad de los países en cada rama de comercio (out degree centrality)')
+        ], className='four columns'),
+        html.Div([
+           html.Iframe(src='assets/mapa1.html', 
+                       style={'border': 'none', 'width': '100%', 'height': 600,'white-space':' pre-wrap'})   
+        ], className='eight columns')
+    ])
+])
+   
+    
+       
+    
     #html.Div([
     #        html.Div([dbc.CardBody([
     #            html.H5("Máximo exportador", style={'color': 'grey'}),
@@ -121,11 +134,8 @@ app.layout = html.Div([
     #], style={'column-count': '2',
     #          'margin-top': '1rem',
     #          'font-size': '0.625rem'}),
-    html.Div([
-       
-    ]),
-    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')])  
-])
+    
+
 
 
 @app.callback(
