@@ -92,7 +92,7 @@ mapa = px.choropleth(
             color='cluster', 
             hover_data=['id', 'cluster'],
             #animation_frame='cluster',
-            color_discrete_sequence=['gray',"#FB8455", "#62D5F0", "#5F96ED"],
+            color_discrete_sequence=['gray',"#FB8455", "#62D5F0", "#18AE95"],
             #range_color=(0, 2),
             scope="world",
             labels={'id':'País','cluster':'Segmento'})
@@ -122,9 +122,9 @@ server = app.server
 
 app.layout = html.Div([
     html.H1('Red de exportaciones'),
+    html.H4('Exportaciones por rama de exportación (2018, USD)'),
     html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')]),
-    html.H4('Exportaciones por rama de exportación (2018, USD).'),
-    html.P('Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales, es decir, los máximos importes exportados.'),
+    dcc.Markdown('Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país).'),
     html.Div([
         html.Div([
             dcc.Dropdown(id ='input_section',
@@ -133,7 +133,7 @@ app.layout = html.Div([
                          value='Chemical Products',
                          clearable=False),
             
-        ], className='two columns'),
+        ], className='six columns'),
         html.Div([
              visdcc.Network(id='network',
                    data={'nodes': network.nodes,'edges': network.edges},
@@ -144,7 +144,7 @@ app.layout = html.Div([
     html.Br(),
     html.Div([
         html.Div([
-            html.H3('Clustering'),
+            html.H4('Clustering'),
             dcc.Markdown("""
                 Segmentación en base a la centralidad de los países en cada rama de comercio.
                 
