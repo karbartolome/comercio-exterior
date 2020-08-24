@@ -11,11 +11,12 @@ from pyvis.network import Network
 import visdcc
 import numpy as np
 from math import log, floor
+import json
 
 #import re
 #import dash_table
 #import networkx as nx 
-#import plotly.express as px
+import plotly.express as px
 #import plotly.graph_objs as go
 
 def human_format(number):
@@ -75,6 +76,43 @@ config_layout={
 
 
 
+# ------ Mapa ------
+df_clusters = pd.read_csv('df_clusters.csv')
+df_clusters['cluster'] = [i[0:1] for i in df_clusters['cluster'].astype('str')]
+df_clusters['cluster']=np.where(df_clusters['cluster']=='n','NA', df_clusters['cluster'])
+
+with open('regions.json') as f:
+    regions = json.load(f)
+
+mapa = px.choropleth(
+            df_clusters, 
+            geojson=regions, 
+            locations='id', 
+            featureidkey='properties.name',
+            color='cluster', 
+            hover_data=['id', 'cluster'],
+            #animation_frame='cluster',
+            color_discrete_sequence=['gray',"#FB8455", "#62D5F0", "#5F96ED"],
+            #range_color=(0, 2),
+            scope="world",
+            labels={'id':'País','cluster':'Segmento'})
+
+mapa.update_geos(showcountries=True, showcoastlines=False, showland=False, showlakes=False, fitbounds="locations")
+                  
+mapa.update_layout(
+                  margin={"r":0,"t":0,"l":0,"b":0}, 
+                  coloraxis_showscale=False, 
+                  xaxis={'showgrid': False},
+                  yaxis={'showgrid': False},
+                  hoverlabel={'bgcolor':"white", 'font_size':14},
+                  font={'family':"Helvetica", 'size':12, 'color':"black"},
+                  title={'font': {'size': 20}, 'x': 0.5, 'y': 0.99,
+                         'text': 'Segmentación de países según centralidad en exportaciones'}
+                 )
+
+
+
+
 
 # ======= APP =======
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -84,8 +122,9 @@ server = app.server
 
 app.layout = html.Div([
     html.H1('Red de exportaciones'),
-    html.H4('Exportaciones por tipo exportación (2018, USD). Por categoría seleccionada se muestran las exportaciones principales'),
     html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')]),
+    html.H4('Exportaciones por rama de exportación (2018, USD).'),
+    html.P('Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales, es decir, los máximos importes exportados.'),
     html.Div([
         html.Div([
             dcc.Dropdown(id ='input_section',
@@ -94,22 +133,32 @@ app.layout = html.Div([
                          value='Chemical Products',
                          clearable=False),
             
-        ], className='four columns'),
+        ], className='two columns'),
         html.Div([
              visdcc.Network(id='network',
                    data={'nodes': network.nodes,'edges': network.edges},
                    options=config_layout)
         ], className='twelve columns')
     ]),
+    html.Br(),
+    html.Br(),
     html.Div([
         html.Div([
-            html.H3('Clustering - Kmeans'),
-            html.P('Segmentación en base a la centralidad de los países en cada rama de comercio (out degree centrality)')
-        ], className='four columns'),
+            html.H3('Clustering'),
+            dcc.Markdown("""
+                Segmentación en base a la centralidad de los países en cada rama de comercio.
+                
+                La centralidad consderada en este caso es **'out degree centrality'**, que mide para cada nodo (país) la fracción de nodos (países) a los que se conecta por enlaces salientes (exportaciones).
+                
+                El algoritmo utilizado para la clusterización es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
+            
+                
+                
+            """)
+        ]),
         html.Div([
-           html.Iframe(src='assets/mapa1.html', 
-                       style={'border': 'none', 'width': '100%', 'height': 600,'white-space':' pre-wrap'})   
-        ], className='eight columns')
+           dcc.Graph(id='mapa', figure=mapa) 
+        ])
     ])
 ])
    
@@ -157,7 +206,7 @@ def update_output(value):
                                    vertices.continente == 'Americas',
                                    vertices.continente == 'Europe',
                                    vertices.continente == 'Oceania'],
-                                   ['#FB8455','#18AE95','#62D5F0','#5F96ED','#E36BF4'], 
+                                   ['#FB8455','#E36BF4','#62D5F0','#5F96ED','#18AE95'],
                                    default='other')
     vertices['label']=[human_format(i) for i in vertices.export_value_usd]
     

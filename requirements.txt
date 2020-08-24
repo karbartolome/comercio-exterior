@@ -28,3 +28,5 @@ traitlets==4.3.2
 Werkzeug==0.15.4
 pyvis==0.1.8.0
 visdcc==0.0.40
+json==2.0.9
+plotly==4.6.0
