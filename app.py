@@ -5,6 +5,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input,Output,State
+import dash_bootstrap_components as dbc
 import pandas as pd
 from pyvis.network import Network
 import visdcc
@@ -26,7 +27,7 @@ def human_format(number):
     else:
         return 0
 
-df = pd.read_csv('df.csv').drop('Unnamed: 0', axis=1)
+df = pd.read_csv('df.csv')
 df = df[df.reporter!=df.partner].copy()
 
 sections = pd.DataFrame({'section': df['section'].unique()}).sort_values('section')
@@ -45,7 +46,7 @@ config_layout={
        "borderWidth": 0,
        "borderWidthSelected": 7,
        "fixed": {"x": False, "y": False},
-       "font": {"size": 13, "strokeWidth": 3, 'color':'black'},
+       "font": {"size": 13, "strokeWidth": 1, 'color':'black'},
        "shape": "dot",
        'shapeProperties': {
            'interpolation': False
@@ -82,8 +83,8 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div([
-    html.H1('Relaciones comerciales'),
-    html.H4('Red de exportaciones por tipo exportación (2018, USD)'),
+    html.H1('Red de exportaciones'),
+    html.H4('Exportaciones por tipo exportación (2018, USD). Por categoría seleccionada se muestran las exportaciones principales'),
     html.Div([
         html.Div([
             dcc.Dropdown(id ='input_section',
@@ -91,11 +92,39 @@ app.layout = html.Div([
                          multi=False,
                          value='Chemical Products',
                          clearable=False),
-        ], className='six columns'),
-    ], className='row'),
-    visdcc.Network(id='network',
+             visdcc.Network(id='network',
                    data={'nodes': network.nodes,'edges': network.edges},
                    options=config_layout)
+        ], className='six columns'),
+        html.Div([
+            html.H3('Clustering - Kmeans'),
+            html.P('Segmentación en base a la centralidad de los países en cada rama de comercio (out degree centrality)'),
+            html.Iframe(src='assets/mapa1.html', 
+                    style={'border': 'none', 'width': '100%', 'height': 600,'white-space':' pre-wrap'}) 
+        ], className='six columns')
+    ], className='row'),
+    #html.Div([
+    #        html.Div([dbc.CardBody([
+    #            html.H5("Máximo exportador", style={'color': 'grey'}),
+    #            html.Div(id='output_maxexpo', style={'font':'30px', 'color':'black'})
+    #        ])
+    #        ], style={"border": "1px white solid",
+    #                  'height': '14rem',
+    #                  'background-color': '#f8f9fa'}),
+    #        html.Div([dbc.CardBody([
+    #            html.H5("Máximo importador", style={'color': 'grey'}),
+    #            html.Div(id='output_maximpo', style={'font':'30px', 'color':'black'})
+    #        ])
+    #        ], style={"border": "1px white solid",
+    #                  'height': '14rem',
+    #                  'background-color': '#f8f9fa'})
+    #], style={'column-count': '2',
+    #          'margin-top': '1rem',
+    #          'font-size': '0.625rem'}),
+    html.Div([
+       
+    ]),
+    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')])  
 ])
 
 
@@ -118,7 +147,7 @@ def update_output(value):
                                    vertices.continente == 'Americas',
                                    vertices.continente == 'Europe',
                                    vertices.continente == 'Oceania'],
-                                   ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0'], 
+                                   ['#FB8455','#18AE95','#62D5F0','#5F96ED','#E36BF4'], 
                                    default='other')
     vertices['label']=[human_format(i) for i in vertices.export_value_usd]
     
