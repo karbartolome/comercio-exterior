@@ -121,10 +121,12 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div([
-    html.H1('Red de exportaciones'),
-    html.H4('Exportaciones por rama de exportación (2018, USD)'),
-    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')]),
-    dcc.Markdown('Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país).'),
+    html.H1('Redes comerciales'),
+    html.H3('Exportaciones por rama de exportación (2018, USD)'),
+    dcc.Markdown("""
+            Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país). 
+            """, style={'fontSize':14}),
+    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')], style={'fontSize':16}),
     html.Div([
         html.Div([
             dcc.Dropdown(id ='input_section',
@@ -144,47 +146,27 @@ app.layout = html.Div([
     html.Br(),
     html.Div([
         html.Div([
-            html.H4('Clustering'),
+            html.H3('Clustering'),
             dcc.Markdown("""
                 Segmentación en base a la centralidad de los países en cada rama de comercio.
+                
+            """, style={'fontSize':14})
+        ]),
+        html.Div([
+           dcc.Graph(id='mapa', figure=mapa) 
+        ]), 
+        dcc.Markdown("""
                 
                 La centralidad consderada en este caso es **'out degree centrality'**, que mide para cada nodo (país) la fracción de nodos (países) a los que se conecta por enlaces salientes (exportaciones).
                 
                 El algoritmo utilizado para la clusterización es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
             
+                Hay exportaciones que quedaron fuera de la visualización pero igualmente fueron tenidas en cuenta al generar las variables para clusterizar.  
                 
-                
-            """)
-        ]),
-        html.Div([
-           dcc.Graph(id='mapa', figure=mapa) 
-        ])
-    ])
+        """, style={'fontSize':14})
+    ]), 
+    html.Label(['tw: ', html.A('@karbartolome', href='https://twitter.com/karbartolome')], style={'fontSize':16})
 ])
-   
-    
-       
-    
-    #html.Div([
-    #        html.Div([dbc.CardBody([
-    #            html.H5("Máximo exportador", style={'color': 'grey'}),
-    #            html.Div(id='output_maxexpo', style={'font':'30px', 'color':'black'})
-    #        ])
-    #        ], style={"border": "1px white solid",
-    #                  'height': '14rem',
-    #                  'background-color': '#f8f9fa'}),
-    #        html.Div([dbc.CardBody([
-    #            html.H5("Máximo importador", style={'color': 'grey'}),
-    #            html.Div(id='output_maximpo', style={'font':'30px', 'color':'black'})
-    #        ])
-    #        ], style={"border": "1px white solid",
-    #                  'height': '14rem',
-    #                  'background-color': '#f8f9fa'})
-    #], style={'column-count': '2',
-    #          'margin-top': '1rem',
-    #          'font-size': '0.625rem'}),
-    
-
 
 
 @app.callback(
