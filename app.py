@@ -102,6 +102,7 @@ mapa.update_geos(showcountries=True, showcoastlines=False, showland=False, showl
 mapa.update_layout(
                   margin={"r":0,"t":0,"l":0,"b":0}, 
                   coloraxis_showscale=False, 
+                  dragmode= False,
                   xaxis={'showgrid': False},
                   yaxis={'showgrid': False},
                   hoverlabel={'bgcolor':"white", 'font_size':14},
@@ -121,7 +122,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div([
-    html.H1('Redes comerciales'),
+    html.H1('Redes en el comercio mundial'),
     html.H3('Exportaciones por rama de exportación (2018, USD)'),
     dcc.Markdown("""
             Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país). 
