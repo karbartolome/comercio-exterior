@@ -145,7 +145,7 @@ app.layout = html.Div([
     html.Br(),
     html.Div([
         html.Div([
-            html.H3('Clustering'),
+            html.H3('Clustering (1962-2018'),
             dcc.Markdown("""
                 Segmentación en base a la centralidad de los países en cada rama de comercio.
                 
@@ -158,10 +158,10 @@ app.layout = html.Div([
                 
                 La centralidad consderada en este caso es **'out degree centrality'**, que mide para cada nodo (país) la fracción de nodos (países) a los que se conecta por enlaces salientes (exportaciones).
                 
-                El algoritmo utilizado para la clusterización es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
+                El algoritmo utilizado es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
             
                 Hay exportaciones que quedaron fuera de la visualización pero igualmente fueron tenidas en cuenta al generar las variables para clusterizar.  
-                
+                                
         """, style={'fontSize':14})
     ]), 
     html.Label(['tw: ', html.A('@karbartolome', href='https://twitter.com/karbartolome')], style={'fontSize':16})
