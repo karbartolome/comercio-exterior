@@ -78,10 +78,6 @@ config_layout={
 
 # ------ Mapa ------
 df_clusters = pd.read_csv('df_clusters.csv')
-df_clusters['cluster'] = [i[0:1] for i in df_clusters['cluster'].astype('str')]
-df_clusters['cluster']=np.where(df_clusters['cluster']=='n','NA', df_clusters['cluster'])
-df_clusters['year']=df_clusters['year'].astype('int')
-df_clusters = df_clusters.sort_values('year')
 
 with open('regions.json') as f:
     regions = json.load(f)
