@@ -1,256 +1,1167 @@
-id,cluster
-Aruba,NA
-Afghanistan,2
-Angola,2
-Anguilla,2
-Albania,2
-Aland,NA
-Andorra,2
-United Arab Emirates,0
-Argentina,1
-Armenia,2
-American Samoa,2
-Antarctica,NA
-Ashmore and Cartier Islands,NA
-French Southern and Antarctic Lands,NA
-Antigua and Barbuda,2
-Australia,1
-Austria,0
-Azerbaijan,2
-Burundi,2
-Belgium,0
-Benin,2
-Burkina Faso,2
-Bangladesh,1
-Bulgaria,1
-Bahrain,2
-The Bahamas,2
-Bosnia and Herzegovina,2
-Bajo Nuevo Bank (Petrel Is.),NA
-Saint Barthelemy,NA
-Belarus,1
-Belize,2
-Bermuda,2
-Bolivia,2
-Brazil,0
-Barbados,2
-Brunei,2
-Bhutan,2
-Botswana,2
-Central African Republic,2
-Canada,1
-Switzerland,0
-Chile,1
-China,0
-Ivory Coast,2
-Clipperton Island,NA
-Cameroon,2
-Cyprus No Mans Area,NA
-Democratic Republic of the Congo,2
-Republic of Congo,2
-Cook Islands,2
-Colombia,1
-Comoros,2
-Cape Verde,2
-Costa Rica,2
-Coral Sea Islands,NA
-Cuba,2
-Curaçao,NA
-Cayman Islands,2
-Northern Cyprus,NA
-Cyprus,1
-Czech Republic,0
-Germany,0
-Djibouti,2
-Dominica,2
-Denmark,0
-Dominican Republic,2
-Algeria,2
-Ecuador,1
-Egypt,1
-Eritrea,NA
-Dhekelia Sovereign Base Area,NA
-Spain,0
-Estonia,1
-Ethiopia,2
-Finland,1
-Fiji,2
-Falkland Islands,2
-France,0
-Faroe Islands,2
-Federated States of Micronesia,NA
-Gabon,2
-United Kingdom,0
-Georgia,2
-Guernsey,NA
-Ghana,2
-Gibraltar,2
-Guinea,2
-Gambia,2
-Guinea Bissau,NA
-Equatorial Guinea,2
-Greece,0
-Grenada,2
-Greenland,2
-Guatemala,2
-Guam,2
-Guyana,2
-Hong Kong S.A.R.,0
-Heard Island and McDonald Islands,NA
-Honduras,2
-Croatia,1
-Haiti,2
-Hungary,1
-Indonesia,0
-Isle of Man,NA
-India,0
-Indian Ocean Territories,NA
-British Indian Ocean Territory,2
-Ireland,1
-Iran,1
-Iraq,2
-Iceland,2
-Israel,1
-Italy,0
-Jamaica,2
-Jersey,NA
-Jordan,1
-Japan,0
-Baykonur Cosmodrome,NA
-Siachen Glacier,NA
-Kazakhstan,2
-Kenya,1
-Kyrgyzstan,2
-Cambodia,1
-Kiribati,2
-Saint Kitts and Nevis,2
-South Korea,0
-Kosovo,NA
-Kuwait,2
-Laos,2
-Lebanon,1
-Liberia,NA
-Libya,2
-Saint Lucia,2
-Liechtenstein,NA
-Sri Lanka,1
-Lesotho,NA
-Lithuania,1
-Luxembourg,1
-Latvia,1
-Macao S.A.R,2
-Saint Martin,NA
-Morocco,1
-Monaco,NA
-Moldova,2
-Madagascar,2
-Maldives,2
-Mexico,1
-Marshall Islands,2
-Macedonia,2
-Mali,2
-Malta,1
-Myanmar,2
-Montenegro,2
-Mongolia,2
-Northern Mariana Islands,2
-Mozambique,2
-Mauritania,2
-Montserrat,NA
-Mauritius,2
-Malawi,2
-Malaysia,0
-Namibia,1
-New Caledonia,2
-Niger,2
-Norfolk Island,2
-Nigeria,2
-Nicaragua,2
-Niue,2
-Netherlands,0
-Norway,1
-Nepal,2
-Nauru,NA
-New Zealand,1
-Oman,1
-Pakistan,1
-Panama,2
-Pitcairn Islands,NA
-Peru,1
-Spratly Islands,NA
-Philippines,1
-Palau,2
-Papua New Guinea,2
-Poland,0
-Puerto Rico,NA
-North Korea,1
-Portugal,0
-Paraguay,2
-Palestine,NA
-French Polynesia,2
-Qatar,2
-Romania,1
-Russia,1
-Rwanda,2
-Western Sahara,NA
-Saudi Arabia,1
-Scarborough Reef,NA
-Sudan,2
-South Sudan,NA
-Senegal,2
-Serranilla Bank,NA
-Singapore,1
-South Georgia and South Sandwich Islands,NA
-Saint Helena,2
-Solomon Islands,2
-Sierra Leone,2
-El Salvador,2
-San Marino,2
-Somaliland,NA
-Somalia,2
-Saint Pierre and Miquelon,2
-Republic of Serbia,1
-Sao Tome and Principe,2
-Suriname,2
-Slovakia,1
-Slovenia,1
-Sweden,0
-Swaziland,1
-Sint Maarten,NA
-Seychelles,2
-Syria,2
-Turks and Caicos Islands,2
-Chad,2
-Togo,2
-Thailand,0
-Tajikistan,2
-Turkmenistan,2
-East Timor,NA
-Tonga,2
-Trinidad and Tobago,2
-Tunisia,1
-Turkey,0
-Tuvalu,NA
-Taiwan,NA
-United Republic of Tanzania,2
-Uganda,2
-Ukraine,1
-United States Minor Outlying Islands,NA
-Uruguay,2
-United States of America,0
-US Naval Base Guantanamo Bay,NA
-Uzbekistan,2
-Vatican,2
-Saint Vincent and the Grenadines,2
-Venezuela,2
-British Virgin Islands,2
-United States Virgin Islands,NA
-Vietnam,1
-Vanuatu,2
-Wallis and Futuna,2
-Akrotiri Sovereign Base Area,NA
-Samoa,2
-Yemen,2
-South Africa,1
-Zambia,2
-Zimbabwe,2
+id,cluster,year
+Afghanistan,C,1968
+Afghanistan,C,1978
+Afghanistan,C,1988
+Afghanistan,C,1998
+Afghanistan,C,2008
+Afghanistan,C,2018
+Angola,C,1968
+Angola,C,1978
+Angola,C,1988
+Angola,C,1998
+Angola,C,2008
+Angola,C,2018
+Anguilla,C,1988
+Anguilla,C,1998
+Anguilla,C,2008
+Anguilla,C,2018
+Albania,C,1968
+Albania,C,1978
+Albania,C,1988
+Albania,C,1998
+Albania,C,2008
+Albania,C,2018
+Andorra,C,1968
+Andorra,C,1978
+Andorra,C,1988
+Andorra,C,1998
+Andorra,C,2008
+Andorra,C,2018
+United Arab Emirates,C,1968
+United Arab Emirates,C,1978
+United Arab Emirates,C,1988
+United Arab Emirates,B,1998
+United Arab Emirates,B,2008
+United Arab Emirates,B,2018
+Argentina,B,1968
+Argentina,B,1978
+Argentina,B,1988
+Argentina,B,1998
+Argentina,B,2008
+Argentina,B,2018
+Armenia,C,1998
+Armenia,C,2008
+Armenia,C,2018
+American Samoa,C,2008
+American Samoa,C,2018
+French Southern and Antarctic Lands,C,1988
+French Southern and Antarctic Lands,C,1998
+French Southern and Antarctic Lands,C,2008
+French Southern and Antarctic Lands,C,2018
+Antigua and Barbuda,C,1968
+Antigua and Barbuda,C,1978
+Antigua and Barbuda,C,1988
+Antigua and Barbuda,C,1998
+Antigua and Barbuda,C,2008
+Antigua and Barbuda,C,2018
+Australia,A,1968
+Australia,B,1978
+Australia,B,1988
+Australia,B,1998
+Australia,B,2008
+Australia,B,2018
+Austria,A,1968
+Austria,A,1978
+Austria,A,1988
+Austria,B,1998
+Austria,A,2008
+Austria,B,2018
+Azerbaijan,C,1998
+Azerbaijan,C,2008
+Azerbaijan,C,2018
+Burundi,C,1968
+Burundi,C,1978
+Burundi,C,1988
+Burundi,C,1998
+Burundi,C,2008
+Burundi,C,2018
+Belgium,A,1968
+Belgium,A,1978
+Belgium,A,1988
+Belgium,A,1998
+Belgium,A,2008
+Belgium,A,2018
+Benin,C,1968
+Benin,C,1978
+Benin,C,1988
+Benin,C,1998
+Benin,C,2008
+Benin,C,2018
+Burkina Faso,C,1968
+Burkina Faso,C,1978
+Burkina Faso,C,1988
+Burkina Faso,C,1998
+Burkina Faso,C,2008
+Burkina Faso,C,2018
+Bangladesh,C,1978
+Bangladesh,C,1988
+Bangladesh,C,1998
+Bangladesh,B,2008
+Bangladesh,B,2018
+Bulgaria,B,1968
+Bulgaria,B,1978
+Bulgaria,C,1988
+Bulgaria,B,1998
+Bulgaria,B,2008
+Bulgaria,B,2018
+Bahrain,C,1968
+Bahrain,C,1978
+Bahrain,C,1988
+Bahrain,C,1998
+Bahrain,C,2008
+Bahrain,C,2018
+The Bahamas,C,1968
+The Bahamas,C,1978
+The Bahamas,C,1988
+The Bahamas,C,1998
+The Bahamas,C,2008
+The Bahamas,C,2018
+Bosnia and Herzegovina,C,1998
+Bosnia and Herzegovina,C,2008
+Bosnia and Herzegovina,C,2018
+Belarus,C,1998
+Belarus,C,2008
+Belarus,B,2018
+Belize,C,1968
+Belize,C,1978
+Belize,C,1988
+Belize,C,1998
+Belize,C,2008
+Belize,C,2018
+Bermuda,C,1968
+Bermuda,C,1978
+Bermuda,C,1988
+Bermuda,C,1998
+Bermuda,C,2008
+Bermuda,C,2018
+Bolivia,C,1968
+Bolivia,C,1978
+Bolivia,C,1988
+Bolivia,C,1998
+Bolivia,C,2008
+Bolivia,C,2018
+Brazil,B,1968
+Brazil,A,1978
+Brazil,A,1988
+Brazil,B,1998
+Brazil,A,2008
+Brazil,A,2018
+Barbados,C,1968
+Barbados,C,1978
+Barbados,C,1988
+Barbados,C,1998
+Barbados,C,2008
+Barbados,C,2018
+Brunei,C,1968
+Brunei,C,1978
+Brunei,C,1988
+Brunei,C,1998
+Brunei,C,2008
+Brunei,C,2018
+Bhutan,C,1978
+Bhutan,C,1988
+Bhutan,C,1998
+Bhutan,C,2008
+Bhutan,C,2018
+Botswana,C,2008
+Botswana,C,2018
+Central African Republic,C,1968
+Central African Republic,C,1978
+Central African Republic,C,1988
+Central African Republic,C,1998
+Central African Republic,C,2008
+Central African Republic,C,2018
+Canada,A,1968
+Canada,A,1978
+Canada,A,1988
+Canada,B,1998
+Canada,B,2008
+Canada,B,2018
+Switzerland,A,1968
+Switzerland,A,1978
+Switzerland,A,1988
+Switzerland,A,1998
+Switzerland,A,2008
+Switzerland,B,2018
+Chile,C,1968
+Chile,C,1978
+Chile,B,1988
+Chile,B,1998
+Chile,B,2008
+Chile,B,2018
+China,A,1968
+China,A,1978
+China,A,1988
+China,A,1998
+China,A,2008
+China,A,2018
+Ivory Coast,B,1968
+Ivory Coast,C,1978
+Ivory Coast,C,1988
+Ivory Coast,B,1998
+Ivory Coast,C,2008
+Ivory Coast,C,2018
+Cameroon,C,1968
+Cameroon,C,1978
+Cameroon,C,1988
+Cameroon,C,1998
+Cameroon,C,2008
+Cameroon,C,2018
+Democratic Republic of the Congo,C,1968
+Democratic Republic of the Congo,C,1978
+Democratic Republic of the Congo,C,1988
+Democratic Republic of the Congo,C,1998
+Democratic Republic of the Congo,C,2008
+Democratic Republic of the Congo,C,2018
+Republic of Congo,C,1968
+Republic of Congo,C,1978
+Republic of Congo,C,1988
+Republic of Congo,C,1998
+Republic of Congo,C,2008
+Republic of Congo,C,2018
+Cook Islands,C,1978
+Cook Islands,C,1988
+Cook Islands,C,1998
+Cook Islands,C,2008
+Cook Islands,C,2018
+Colombia,B,1968
+Colombia,B,1978
+Colombia,B,1988
+Colombia,B,1998
+Colombia,B,2008
+Colombia,B,2018
+Comoros,C,1968
+Comoros,C,1978
+Comoros,C,1988
+Comoros,C,1998
+Comoros,C,2008
+Comoros,C,2018
+Cape Verde,C,1968
+Cape Verde,C,1978
+Cape Verde,C,1988
+Cape Verde,C,1998
+Cape Verde,C,2008
+Cape Verde,C,2018
+Costa Rica,C,1968
+Costa Rica,C,1978
+Costa Rica,C,1988
+Costa Rica,C,1998
+Costa Rica,C,2008
+Costa Rica,C,2018
+Cuba,C,1968
+Cuba,C,1978
+Cuba,C,1988
+Cuba,C,1998
+Cuba,C,2008
+Cuba,C,2018
+Cayman Islands,C,1978
+Cayman Islands,C,1988
+Cayman Islands,C,1998
+Cayman Islands,C,2008
+Cayman Islands,C,2018
+Cyprus,C,1968
+Cyprus,C,1978
+Cyprus,C,1988
+Cyprus,B,1998
+Cyprus,B,2008
+Cyprus,B,2018
+Czech Republic,B,1998
+Czech Republic,B,2008
+Czech Republic,B,2018
+Germany,A,1968
+Germany,A,1978
+Germany,A,1988
+Germany,A,1998
+Germany,A,2008
+Germany,A,2018
+Djibouti,C,1968
+Djibouti,C,1978
+Djibouti,C,1988
+Djibouti,C,1998
+Djibouti,C,2008
+Djibouti,C,2018
+Dominica,C,1968
+Dominica,C,1978
+Dominica,C,1988
+Dominica,C,1998
+Dominica,C,2008
+Dominica,C,2018
+Denmark,A,1968
+Denmark,A,1978
+Denmark,A,1988
+Denmark,A,1998
+Denmark,A,2008
+Denmark,A,2018
+Dominican Republic,C,1968
+Dominican Republic,C,1978
+Dominican Republic,C,1988
+Dominican Republic,C,1998
+Dominican Republic,C,2008
+Dominican Republic,C,2018
+Algeria,B,1968
+Algeria,C,1978
+Algeria,C,1988
+Algeria,C,1998
+Algeria,C,2008
+Algeria,C,2018
+Ecuador,C,1968
+Ecuador,C,1978
+Ecuador,C,1988
+Ecuador,C,1998
+Ecuador,B,2008
+Ecuador,B,2018
+Egypt,B,1968
+Egypt,C,1978
+Egypt,C,1988
+Egypt,B,1998
+Egypt,B,2008
+Egypt,B,2018
+Eritrea,C,1998
+Eritrea,C,2008
+Eritrea,C,2018
+Spain,A,1968
+Spain,A,1978
+Spain,A,1988
+Spain,A,1998
+Spain,A,2008
+Spain,A,2018
+Estonia,B,1998
+Estonia,B,2008
+Estonia,B,2018
+Ethiopia,C,1968
+Ethiopia,C,1978
+Ethiopia,C,1988
+Ethiopia,C,1998
+Ethiopia,C,2008
+Ethiopia,C,2018
+Finland,B,1968
+Finland,B,1978
+Finland,B,1988
+Finland,B,1998
+Finland,B,2008
+Finland,B,2018
+Fiji,C,1968
+Fiji,C,1978
+Fiji,C,1988
+Fiji,C,1998
+Fiji,C,2008
+Fiji,C,2018
+Falkland Islands,C,1978
+Falkland Islands,C,1988
+Falkland Islands,C,1998
+Falkland Islands,C,2008
+Falkland Islands,C,2018
+France,A,1968
+France,A,1978
+France,A,1988
+France,A,1998
+France,A,2008
+France,A,2018
+Faroe Islands,C,1968
+Faroe Islands,C,1978
+Faroe Islands,C,1988
+Faroe Islands,C,1998
+Faroe Islands,C,2008
+Faroe Islands,C,2018
+Federated States of Micronesia,C,1998
+Federated States of Micronesia,C,2008
+Federated States of Micronesia,C,2018
+Gabon,C,1968
+Gabon,C,1978
+Gabon,C,1988
+Gabon,C,1998
+Gabon,C,2008
+Gabon,C,2018
+United Kingdom,A,1968
+United Kingdom,A,1978
+United Kingdom,A,1988
+United Kingdom,A,1998
+United Kingdom,A,2008
+United Kingdom,A,2018
+Georgia,C,1998
+Georgia,C,2008
+Georgia,C,2018
+Ghana,C,1968
+Ghana,C,1978
+Ghana,C,1988
+Ghana,C,1998
+Ghana,C,2008
+Ghana,C,2018
+Gibraltar,C,1968
+Gibraltar,C,1978
+Gibraltar,C,1988
+Gibraltar,C,1998
+Gibraltar,C,2008
+Gibraltar,C,2018
+Guinea,C,1968
+Guinea,C,1978
+Guinea,C,1988
+Guinea,C,1998
+Guinea,C,2008
+Guinea,C,2018
+Gambia,C,1968
+Gambia,C,1978
+Gambia,C,1988
+Gambia,C,1998
+Gambia,C,2008
+Gambia,C,2018
+Guinea Bissau,C,1968
+Guinea Bissau,C,1978
+Guinea Bissau,C,1988
+Guinea Bissau,C,1998
+Guinea Bissau,C,2008
+Guinea Bissau,C,2018
+Equatorial Guinea,C,1968
+Equatorial Guinea,C,1978
+Equatorial Guinea,C,1988
+Equatorial Guinea,C,1998
+Equatorial Guinea,C,2008
+Equatorial Guinea,C,2018
+Greece,B,1968
+Greece,B,1978
+Greece,B,1988
+Greece,B,1998
+Greece,B,2008
+Greece,B,2018
+Grenada,C,1968
+Grenada,C,1978
+Grenada,C,1988
+Grenada,C,1998
+Grenada,C,2008
+Grenada,C,2018
+Greenland,C,1978
+Greenland,C,1988
+Greenland,C,1998
+Greenland,C,2008
+Greenland,C,2018
+Guatemala,C,1968
+Guatemala,C,1978
+Guatemala,C,1988
+Guatemala,C,1998
+Guatemala,C,2008
+Guatemala,C,2018
+Guam,C,2008
+Guam,C,2018
+Guyana,C,1968
+Guyana,C,1978
+Guyana,C,1988
+Guyana,C,1998
+Guyana,C,2008
+Guyana,C,2018
+Hong Kong S.A.R.,A,1968
+Hong Kong S.A.R.,A,1978
+Hong Kong S.A.R.,A,1988
+Hong Kong S.A.R.,A,1998
+Hong Kong S.A.R.,A,2008
+Hong Kong S.A.R.,A,2018
+Heard Island and McDonald Islands,C,2008
+Heard Island and McDonald Islands,C,2018
+Honduras,C,1968
+Honduras,C,1978
+Honduras,C,1988
+Honduras,C,1998
+Honduras,C,2008
+Honduras,C,2018
+Croatia,C,1998
+Croatia,C,2008
+Croatia,B,2018
+Haiti,C,1968
+Haiti,C,1978
+Haiti,C,1988
+Haiti,C,1998
+Haiti,C,2008
+Haiti,C,2018
+Hungary,B,1968
+Hungary,B,1978
+Hungary,B,1988
+Hungary,B,1998
+Hungary,B,2008
+Hungary,B,2018
+Indonesia,B,1968
+Indonesia,B,1978
+Indonesia,B,1988
+Indonesia,A,1998
+Indonesia,A,2008
+Indonesia,A,2018
+India,A,1968
+India,A,1978
+India,A,1988
+India,A,1998
+India,A,2008
+India,A,2018
+British Indian Ocean Territory,C,1978
+British Indian Ocean Territory,C,1988
+British Indian Ocean Territory,C,1998
+British Indian Ocean Territory,C,2008
+British Indian Ocean Territory,C,2018
+Ireland,B,1968
+Ireland,B,1978
+Ireland,B,1988
+Ireland,B,1998
+Ireland,B,2008
+Ireland,B,2018
+Iran,B,1968
+Iran,C,1978
+Iran,C,1988
+Iran,B,1998
+Iran,B,2008
+Iran,B,2018
+Iraq,C,1968
+Iraq,C,1978
+Iraq,C,1988
+Iraq,C,1998
+Iraq,C,2008
+Iraq,C,2018
+Iceland,C,1968
+Iceland,C,1978
+Iceland,C,1988
+Iceland,C,1998
+Iceland,C,2008
+Iceland,C,2018
+Israel,B,1968
+Israel,B,1978
+Israel,B,1988
+Israel,B,1998
+Israel,B,2008
+Israel,B,2018
+Italy,A,1968
+Italy,A,1978
+Italy,A,1988
+Italy,A,1998
+Italy,A,2008
+Italy,A,2018
+Jamaica,C,1968
+Jamaica,C,1978
+Jamaica,C,1988
+Jamaica,C,1998
+Jamaica,C,2008
+Jamaica,C,2018
+Jordan,C,1968
+Jordan,C,1978
+Jordan,C,1988
+Jordan,C,1998
+Jordan,C,2008
+Jordan,C,2018
+Japan,A,1968
+Japan,A,1978
+Japan,A,1988
+Japan,A,1998
+Japan,A,2008
+Japan,A,2018
+Kazakhstan,C,1998
+Kazakhstan,C,2008
+Kazakhstan,C,2018
+Kenya,C,1968
+Kenya,B,1978
+Kenya,B,1988
+Kenya,B,1998
+Kenya,B,2008
+Kenya,B,2018
+Kyrgyzstan,C,1998
+Kyrgyzstan,C,2008
+Kyrgyzstan,C,2018
+Cambodia,C,1968
+Cambodia,C,1978
+Cambodia,C,1988
+Cambodia,C,1998
+Cambodia,C,2008
+Cambodia,B,2018
+Kiribati,C,1978
+Kiribati,C,1988
+Kiribati,C,1998
+Kiribati,C,2008
+Kiribati,C,2018
+Saint Kitts and Nevis,C,1968
+Saint Kitts and Nevis,C,1978
+Saint Kitts and Nevis,C,1988
+Saint Kitts and Nevis,C,1998
+Saint Kitts and Nevis,C,2008
+Saint Kitts and Nevis,C,2018
+South Korea,B,1968
+South Korea,A,1978
+South Korea,A,1988
+South Korea,A,1998
+South Korea,A,2008
+South Korea,B,2018
+Kuwait,C,1968
+Kuwait,C,1978
+Kuwait,C,1988
+Kuwait,C,1998
+Kuwait,C,2008
+Kuwait,C,2018
+Laos,C,1968
+Laos,C,1978
+Laos,C,1988
+Laos,C,1998
+Laos,C,2008
+Laos,C,2018
+Lebanon,B,1968
+Lebanon,C,1978
+Lebanon,C,1988
+Lebanon,B,1998
+Lebanon,B,2008
+Lebanon,B,2018
+Liberia,C,1968
+Liberia,C,1978
+Liberia,C,1988
+Liberia,C,1998
+Liberia,C,2008
+Liberia,C,2018
+Libya,C,1968
+Libya,C,1978
+Libya,C,1988
+Libya,C,1998
+Libya,C,2008
+Libya,C,2018
+Saint Lucia,C,1968
+Saint Lucia,C,1978
+Saint Lucia,C,1988
+Saint Lucia,C,1998
+Saint Lucia,C,2008
+Saint Lucia,C,2018
+Sri Lanka,B,1968
+Sri Lanka,B,1978
+Sri Lanka,B,1988
+Sri Lanka,B,1998
+Sri Lanka,B,2008
+Sri Lanka,B,2018
+Lesotho,C,2008
+Lesotho,C,2018
+Lithuania,C,1998
+Lithuania,B,2008
+Lithuania,B,2018
+Luxembourg,B,2008
+Luxembourg,B,2018
+Latvia,C,1998
+Latvia,B,2008
+Latvia,B,2018
+Macao S.A.R,C,1968
+Macao S.A.R,C,1978
+Macao S.A.R,C,1988
+Macao S.A.R,C,1998
+Macao S.A.R,C,2008
+Macao S.A.R,C,2018
+Morocco,B,1968
+Morocco,B,1978
+Morocco,B,1988
+Morocco,B,1998
+Morocco,B,2008
+Morocco,B,2018
+Moldova,C,1998
+Moldova,C,2008
+Moldova,C,2018
+Madagascar,B,1968
+Madagascar,C,1978
+Madagascar,C,1988
+Madagascar,C,1998
+Madagascar,C,2008
+Madagascar,C,2018
+Maldives,C,1978
+Maldives,C,1988
+Maldives,C,1998
+Maldives,C,2008
+Maldives,C,2018
+Mexico,B,1968
+Mexico,B,1978
+Mexico,B,1988
+Mexico,B,1998
+Mexico,B,2008
+Mexico,B,2018
+Marshall Islands,C,1998
+Marshall Islands,C,2008
+Marshall Islands,C,2018
+Macedonia,C,1998
+Macedonia,C,2008
+Macedonia,C,2018
+Mali,C,1968
+Mali,C,1978
+Mali,C,1988
+Mali,C,1998
+Mali,C,2008
+Mali,C,2018
+Malta,C,1968
+Malta,C,1978
+Malta,C,1988
+Malta,C,1998
+Malta,C,2008
+Malta,B,2018
+Myanmar,C,1968
+Myanmar,C,1978
+Myanmar,C,1988
+Myanmar,C,1998
+Myanmar,C,2008
+Myanmar,C,2018
+Montenegro,C,2008
+Montenegro,C,2018
+Mongolia,C,1968
+Mongolia,C,1978
+Mongolia,C,1988
+Mongolia,C,1998
+Mongolia,C,2008
+Mongolia,C,2018
+Northern Mariana Islands,C,1998
+Northern Mariana Islands,C,2008
+Northern Mariana Islands,C,2018
+Mozambique,C,1968
+Mozambique,C,1978
+Mozambique,C,1988
+Mozambique,C,1998
+Mozambique,C,2008
+Mozambique,C,2018
+Mauritania,C,1968
+Mauritania,C,1978
+Mauritania,C,1988
+Mauritania,C,1998
+Mauritania,C,2008
+Mauritania,C,2018
+Montserrat,C,1978
+Montserrat,C,1988
+Montserrat,C,1998
+Montserrat,C,2008
+Montserrat,C,2018
+Mauritius,C,1968
+Mauritius,C,1978
+Mauritius,C,1988
+Mauritius,C,1998
+Mauritius,C,2008
+Mauritius,C,2018
+Malawi,C,1968
+Malawi,C,1978
+Malawi,C,1988
+Malawi,C,1998
+Malawi,C,2008
+Malawi,C,2018
+Malaysia,B,1968
+Malaysia,B,1978
+Malaysia,B,1988
+Malaysia,A,1998
+Malaysia,A,2008
+Malaysia,A,2018
+Namibia,B,2008
+Namibia,B,2018
+New Caledonia,C,1968
+New Caledonia,C,1978
+New Caledonia,C,1988
+New Caledonia,C,1998
+New Caledonia,C,2008
+New Caledonia,C,2018
+Niger,C,1968
+Niger,C,1978
+Niger,C,1988
+Niger,C,1998
+Niger,C,2008
+Niger,C,2018
+Norfolk Island,C,1978
+Norfolk Island,C,1988
+Norfolk Island,C,1998
+Norfolk Island,C,2008
+Norfolk Island,C,2018
+Nigeria,B,1968
+Nigeria,C,1978
+Nigeria,C,1988
+Nigeria,C,1998
+Nigeria,C,2008
+Nigeria,C,2018
+Nicaragua,C,1968
+Nicaragua,C,1978
+Nicaragua,C,1988
+Nicaragua,C,1998
+Nicaragua,C,2008
+Nicaragua,C,2018
+Niue,C,1978
+Niue,C,1988
+Niue,C,1998
+Niue,C,2008
+Niue,C,2018
+Netherlands,A,1968
+Netherlands,A,1978
+Netherlands,A,1988
+Netherlands,A,1998
+Netherlands,A,2008
+Netherlands,A,2018
+Norway,A,1968
+Norway,B,1978
+Norway,B,1988
+Norway,B,1998
+Norway,B,2008
+Norway,B,2018
+Nepal,C,1968
+Nepal,C,1978
+Nepal,C,1988
+Nepal,C,1998
+Nepal,B,2008
+Nepal,C,2018
+Nauru,C,1978
+Nauru,C,1988
+Nauru,C,1998
+Nauru,C,2008
+Nauru,C,2018
+New Zealand,B,1968
+New Zealand,B,1978
+New Zealand,B,1988
+New Zealand,B,1998
+New Zealand,B,2008
+New Zealand,B,2018
+Oman,C,1968
+Oman,C,1978
+Oman,C,1988
+Oman,C,1998
+Oman,C,2008
+Oman,B,2018
+Pakistan,B,1968
+Pakistan,B,1978
+Pakistan,B,1988
+Pakistan,B,1998
+Pakistan,B,2008
+Pakistan,B,2018
+Panama,C,1968
+Panama,C,1978
+Panama,C,1988
+Panama,C,1998
+Panama,B,2008
+Panama,C,2018
+Pitcairn Islands,C,1978
+Pitcairn Islands,C,1988
+Pitcairn Islands,C,1998
+Pitcairn Islands,C,2008
+Pitcairn Islands,C,2018
+Peru,C,1968
+Peru,B,1978
+Peru,B,1988
+Peru,C,1998
+Peru,B,2008
+Peru,B,2018
+Philippines,C,1968
+Philippines,B,1978
+Philippines,B,1988
+Philippines,B,1998
+Philippines,A,2008
+Philippines,B,2018
+Palau,C,1998
+Palau,C,2008
+Palau,C,2018
+Papua New Guinea,C,1968
+Papua New Guinea,C,1978
+Papua New Guinea,C,1988
+Papua New Guinea,C,1998
+Papua New Guinea,C,2008
+Papua New Guinea,C,2018
+Poland,B,1968
+Poland,B,1978
+Poland,B,1988
+Poland,B,1998
+Poland,B,2008
+Poland,A,2018
+North Korea,C,1968
+North Korea,C,1978
+North Korea,C,1988
+North Korea,B,1998
+North Korea,B,2008
+North Korea,B,2018
+Portugal,B,1968
+Portugal,B,1978
+Portugal,B,1988
+Portugal,B,1998
+Portugal,B,2008
+Portugal,A,2018
+Paraguay,C,1968
+Paraguay,C,1978
+Paraguay,C,1988
+Paraguay,C,1998
+Paraguay,C,2008
+Paraguay,C,2018
+Palestine,C,2008
+Palestine,C,2018
+French Polynesia,C,1968
+French Polynesia,C,1978
+French Polynesia,C,1988
+French Polynesia,C,1998
+French Polynesia,C,2008
+French Polynesia,C,2018
+Qatar,C,1968
+Qatar,C,1978
+Qatar,C,1988
+Qatar,C,1998
+Qatar,C,2008
+Qatar,C,2018
+Romania,B,1968
+Romania,B,1978
+Romania,B,1988
+Romania,B,1998
+Romania,B,2008
+Romania,B,2018
+Russia,B,1968
+Russia,B,1978
+Russia,B,1988
+Russia,B,1998
+Russia,B,2008
+Russia,B,2018
+Rwanda,C,1968
+Rwanda,C,1978
+Rwanda,C,1988
+Rwanda,C,1998
+Rwanda,C,2008
+Rwanda,C,2018
+Western Sahara,C,1968
+Western Sahara,C,1978
+Western Sahara,C,1988
+Western Sahara,C,1998
+Western Sahara,C,2008
+Western Sahara,C,2018
+Saudi Arabia,C,1968
+Saudi Arabia,C,1978
+Saudi Arabia,C,1988
+Saudi Arabia,B,1998
+Saudi Arabia,B,2008
+Saudi Arabia,B,2018
+Sudan,C,1968
+Sudan,C,1978
+Sudan,C,1988
+Sudan,C,1998
+Sudan,C,2008
+Sudan,C,2018
+Senegal,B,1968
+Senegal,C,1978
+Senegal,C,1988
+Senegal,C,1998
+Senegal,B,2008
+Senegal,C,2018
+Singapore,B,1968
+Singapore,B,1978
+Singapore,A,1988
+Singapore,A,1998
+Singapore,A,2008
+Singapore,B,2018
+South Georgia and South Sandwich Islands,C,2008
+South Georgia and South Sandwich Islands,C,2018
+Saint Helena,C,1978
+Saint Helena,C,1988
+Saint Helena,C,1998
+Saint Helena,C,2008
+Saint Helena,C,2018
+Solomon Islands,C,1978
+Solomon Islands,C,1988
+Solomon Islands,C,1998
+Solomon Islands,C,2008
+Solomon Islands,C,2018
+Sierra Leone,C,1968
+Sierra Leone,C,1978
+Sierra Leone,C,1988
+Sierra Leone,C,1998
+Sierra Leone,C,2008
+Sierra Leone,C,2018
+El Salvador,C,1968
+El Salvador,C,1978
+El Salvador,C,1988
+El Salvador,C,1998
+El Salvador,C,2008
+El Salvador,C,2018
+San Marino,C,2008
+San Marino,C,2018
+Somalia,C,1968
+Somalia,C,1978
+Somalia,C,1988
+Somalia,C,1998
+Somalia,C,2008
+Somalia,C,2018
+Saint Pierre and Miquelon,C,1968
+Saint Pierre and Miquelon,C,1978
+Saint Pierre and Miquelon,C,1988
+Saint Pierre and Miquelon,C,1998
+Saint Pierre and Miquelon,C,2008
+Saint Pierre and Miquelon,C,2018
+Republic of Serbia,C,2008
+Republic of Serbia,B,2018
+Sao Tome and Principe,C,1978
+Sao Tome and Principe,C,1988
+Sao Tome and Principe,C,1998
+Sao Tome and Principe,C,2008
+Sao Tome and Principe,C,2018
+Suriname,C,1968
+Suriname,C,1978
+Suriname,C,1988
+Suriname,C,1998
+Suriname,C,2008
+Suriname,C,2018
+Slovakia,B,1998
+Slovakia,B,2008
+Slovakia,B,2018
+Slovenia,C,1998
+Slovenia,B,2008
+Slovenia,B,2018
+Sweden,A,1968
+Sweden,A,1978
+Sweden,A,1988
+Sweden,A,1998
+Sweden,A,2008
+Sweden,A,2018
+Swaziland,B,2008
+Swaziland,B,2018
+Seychelles,C,1978
+Seychelles,C,1988
+Seychelles,C,1998
+Seychelles,C,2008
+Seychelles,C,2018
+Syria,C,1968
+Syria,C,1978
+Syria,C,1988
+Syria,C,1998
+Syria,B,2008
+Syria,C,2018
+Turks and Caicos Islands,C,1978
+Turks and Caicos Islands,C,1988
+Turks and Caicos Islands,C,1998
+Turks and Caicos Islands,C,2008
+Turks and Caicos Islands,C,2018
+Chad,C,1968
+Chad,C,1978
+Chad,C,1988
+Chad,C,1998
+Chad,C,2008
+Chad,C,2018
+Togo,C,1968
+Togo,C,1978
+Togo,C,1988
+Togo,C,1998
+Togo,C,2008
+Togo,C,2018
+Thailand,B,1968
+Thailand,B,1978
+Thailand,B,1988
+Thailand,A,1998
+Thailand,A,2008
+Thailand,A,2018
+Tajikistan,C,1998
+Tajikistan,C,2008
+Tajikistan,C,2018
+Turkmenistan,C,1998
+Turkmenistan,C,2008
+Turkmenistan,C,2018
+Tonga,C,1978
+Tonga,C,1988
+Tonga,C,1998
+Tonga,C,2008
+Tonga,C,2018
+Trinidad and Tobago,B,1968
+Trinidad and Tobago,C,1978
+Trinidad and Tobago,C,1988
+Trinidad and Tobago,C,1998
+Trinidad and Tobago,C,2008
+Trinidad and Tobago,C,2018
+Tunisia,C,1968
+Tunisia,C,1978
+Tunisia,C,1988
+Tunisia,B,1998
+Tunisia,B,2008
+Tunisia,B,2018
+Turkey,B,1968
+Turkey,B,1978
+Turkey,B,1988
+Turkey,B,1998
+Turkey,A,2008
+Turkey,A,2018
+Tuvalu,C,1978
+Tuvalu,C,1988
+Tuvalu,C,1998
+Tuvalu,C,2008
+Tuvalu,C,2018
+United Republic of Tanzania,C,1968
+United Republic of Tanzania,C,1978
+United Republic of Tanzania,C,1988
+United Republic of Tanzania,C,1998
+United Republic of Tanzania,C,2008
+United Republic of Tanzania,C,2018
+Uganda,C,1968
+Uganda,C,1978
+Uganda,C,1988
+Uganda,C,1998
+Uganda,C,2008
+Uganda,C,2018
+Ukraine,B,1998
+Ukraine,B,2008
+Ukraine,B,2018
+United States Minor Outlying Islands,C,2008
+United States Minor Outlying Islands,C,2018
+Uruguay,C,1968
+Uruguay,C,1978
+Uruguay,C,1988
+Uruguay,C,1998
+Uruguay,B,2008
+Uruguay,C,2018
+United States of America,A,1968
+United States of America,A,1978
+United States of America,A,1988
+United States of America,A,1998
+United States of America,A,2008
+United States of America,A,2018
+Uzbekistan,C,1998
+Uzbekistan,C,2008
+Uzbekistan,C,2018
+Vatican,C,2008
+Vatican,C,2018
+Saint Vincent and the Grenadines,C,1968
+Saint Vincent and the Grenadines,C,1978
+Saint Vincent and the Grenadines,C,1988
+Saint Vincent and the Grenadines,C,1998
+Saint Vincent and the Grenadines,C,2008
+Saint Vincent and the Grenadines,C,2018
+Venezuela,B,1968
+Venezuela,C,1978
+Venezuela,C,1988
+Venezuela,C,1998
+Venezuela,C,2008
+Venezuela,C,2018
+British Virgin Islands,C,1978
+British Virgin Islands,C,1988
+British Virgin Islands,C,1998
+British Virgin Islands,C,2008
+British Virgin Islands,C,2018
+United States Virgin Islands,C,1968
+United States Virgin Islands,C,1978
+Vietnam,C,1968
+Vietnam,C,1978
+Vietnam,C,1988
+Vietnam,B,1998
+Vietnam,B,2008
+Vietnam,B,2018
+Vanuatu,C,1968
+Vanuatu,C,1978
+Vanuatu,C,1988
+Vanuatu,C,1998
+Vanuatu,C,2008
+Vanuatu,C,2018
+Wallis and Futuna,C,1978
+Wallis and Futuna,C,1988
+Wallis and Futuna,C,1998
+Wallis and Futuna,C,2008
+Wallis and Futuna,C,2018
+Samoa,C,1968
+Samoa,C,1978
+Samoa,C,1988
+Samoa,C,1998
+Samoa,C,2008
+Samoa,C,2018
+Yemen,C,1968
+Yemen,C,1978
+Yemen,C,1988
+Yemen,C,1998
+Yemen,C,2008
+Yemen,C,2018
+South Africa,B,1968
+South Africa,B,1978
+South Africa,C,1988
+South Africa,B,1998
+South Africa,B,2008
+South Africa,B,2018
+Zambia,C,1968
+Zambia,C,1978
+Zambia,C,1988
+Zambia,C,1998
+Zambia,C,2008
+Zambia,C,2018
+Zimbabwe,C,1968
+Zimbabwe,C,1978
+Zimbabwe,C,1988
+Zimbabwe,C,1998
+Zimbabwe,C,2008
+Zimbabwe,C,2018

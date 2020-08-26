@@ -80,6 +80,8 @@ config_layout={
 df_clusters = pd.read_csv('df_clusters.csv')
 df_clusters['cluster'] = [i[0:1] for i in df_clusters['cluster'].astype('str')]
 df_clusters['cluster']=np.where(df_clusters['cluster']=='n','NA', df_clusters['cluster'])
+df_clusters['year']=df_clusters['year'].astype('int')
+df_clusters = df_clusters.sort_values('year')
 
 with open('regions.json') as f:
     regions = json.load(f)
@@ -91,8 +93,8 @@ mapa = px.choropleth(
             featureidkey='properties.name',
             color='cluster', 
             hover_data=['id', 'cluster'],
-            #animation_frame='cluster',
-            color_discrete_sequence=['gray',"#FB8455", "#62D5F0", "#5F96ED"],
+            animation_frame='year',
+            color_discrete_sequence=["#FB8455", "#62D5F0", "#5F96ED"],
             #range_color=(0, 2),
             scope="world",
             labels={'id':'País','cluster':'Segmento'})
