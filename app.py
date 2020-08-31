@@ -145,7 +145,7 @@ app.layout = html.Div([
     html.Br(),
     html.Div([
         html.Div([
-            html.H3('Clustering (1962-2018'),
+            html.H3('Clustering (1962-2018)'),
             dcc.Markdown("""
                 Segmentación en base a la centralidad de los países en cada rama de comercio.
                 
