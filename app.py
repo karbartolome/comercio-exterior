@@ -4,7 +4,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input,Output,State
+from dash.dependencies import Input,Output
 #import dash_bootstrap_components as dbc
 import pandas as pd
 from pyvis.network import Network
@@ -29,14 +29,13 @@ def human_format(number):
         return 0
 
 df = pd.read_csv('df.csv')
-#df = df[df.reporter!=df.partner].copy()
 
 sections = pd.DataFrame({'section': df['section'].unique()}).sort_values('section')
 
 network = Network( 
     bgcolor="white", 
     font_color="black",
-    notebook=True, 
+    notebook=False, 
     directed=True
 )
 
