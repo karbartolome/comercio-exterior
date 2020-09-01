@@ -29,7 +29,7 @@ def human_format(number):
         return 0
 
 df = pd.read_csv('df.csv')
-df = df[df.reporter!=df.partner].copy()
+#df = df[df.reporter!=df.partner].copy()
 
 sections = pd.DataFrame({'section': df['section'].unique()}).sort_values('section')
 
@@ -104,9 +104,7 @@ mapa.update_layout(
                   xaxis={'showgrid': False},
                   yaxis={'showgrid': False},
                   hoverlabel={'bgcolor':"white", 'font_size':14},
-                  font={'family':"Helvetica", 'size':12, 'color':"black"},
-                  title={'font': {'size': 20}, 'x': 0.5, 'y': 0.99,
-                         'text': 'Segmentación de países según centralidad en exportaciones'}
+                  font={'family':"Helvetica", 'size':12, 'color':"black"}
                  )
 
 
@@ -115,12 +113,16 @@ mapa.update_layout(
 
 # ======= APP =======
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
+app.title = 'Redes comerciales'
+
 app.layout = html.Div([
-    html.H1('Redes en el comercio mundial'),
+    html.Title('Redes en el comercio mundial'),
     html.H3('Exportaciones por rama de exportación (2018, USD)'),
     dcc.Markdown("""
             Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país). 
