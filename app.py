@@ -15,9 +15,7 @@ import numpy as np
 from math import log, floor
 import json
 
-#import re
 #import dash_table
-#import networkx as nx 
 import plotly.express as px
 #import plotly.graph_objs as go
 
@@ -32,7 +30,7 @@ def human_format(number):
     
     
 
-def draw_pyvis(networkx_graph,notebook=False):
+def draw_pyvis(networkx_graph):
    
     pyvis_graph = Network(
         height="750px", 
@@ -372,6 +370,6 @@ def update_output(pais, radio, section):
     
 
 if __name__ == '__main__':
-    app.run_server(port='8124')
+    app.run_server()
     
     
