@@ -129,11 +129,6 @@ mapa.update_layout(
                  )
 
 
-
-
-
-
-
 # Tab 2
 df['color'] = np.select([df['continent_reporter'] == 'Asia', 
                                df['continent_reporter']== 'Africa', 
@@ -152,6 +147,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 #app = JupyterDash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 app.title = 'Redes comerciales'
 
