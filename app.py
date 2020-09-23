@@ -2,12 +2,14 @@
 # ======= Libraries =======
 
 import dash
+#rom jupyter_dash import JupyterDash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input,Output
 #import dash_bootstrap_components as dbc
 import pandas as pd
 from pyvis.network import Network
+import networkx as nx
 import visdcc
 import numpy as np
 from math import log, floor
@@ -27,6 +29,36 @@ def human_format(number):
         return '%.1f%s' % (number / k**magnitude, units[magnitude])
     else:
         return 0
+    
+    
+
+def draw_pyvis(networkx_graph,notebook=False):
+   
+    pyvis_graph = Network(
+        height="750px", 
+        width="100%", 
+        bgcolor="white", 
+        font_color="black",
+        notebook=False, 
+        directed=True)
+
+    for node,node_attrs in networkx_graph.nodes(data=True):
+        node_attrs['label']=node
+        pyvis_graph.add_node(str(node),**node_attrs)
+    
+    for source,target,edge_attrs in networkx_graph.edges(data=True):
+        if not 'value' in edge_attrs and not 'width' in edge_attrs and 'weight' in edge_attrs:
+            edge_attrs['value']=edge_attrs['weight']
+            edge_attrs['title']=edge_attrs['section']
+            edge_attrs['label']=edge_attrs['section']
+        pyvis_graph.add_edge(str(source),str(target),**edge_attrs)
+        
+    return pyvis_graph 
+    
+    
+    
+    
+
 
 df = pd.read_csv('df.csv')
 
@@ -110,61 +142,145 @@ mapa.update_layout(
 
 
 
+
+
+# Tab 2
+df['color'] = np.select([df['continent_reporter'] == 'Asia', 
+                               df['continent_reporter']== 'Africa', 
+                               df['continent_reporter'] == 'Americas',
+                               df['continent_reporter'] == 'Europe',
+                               df['continent_reporter'] == 'Oceania'],
+                               ['#FB8455','#E36BF4','#62D5F0','#5F96ED','#18AE95'],
+                               default='other')
+
+
+
 # ======= APP =======
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+#app = JupyterDash(__name__, external_stylesheets=external_stylesheets)
 
 app.title = 'Redes comerciales'
 
 app.layout = html.Div([
     html.Title('Redes en el comercio mundial'),
-    html.H3('Exportaciones por rama de exportación (2018, USD)'),
-    dcc.Markdown("""
-            Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país). 
-            """, style={'fontSize':14}),
-    html.Label(['Fuente: ', html.A('Open Trade Statistics', href='https://tradestatistics.io/')], style={'fontSize':16}),
+    html.H3('Exportaciones por rama de exportación'),
     html.Div([
         html.Div([
-            dcc.Dropdown(id ='input_section',
-                         options=[{'label': i, 'value': i} for i in sections.section.unique()],
-                         multi=False,
-                         value='Chemical Products',
-                         clearable=False),
-            
-        ], className='six columns'),
-        html.Div([
-             visdcc.Network(id='network',
-                   data={'nodes': network.nodes,'edges': network.edges},
-                   options=config_layout)
-        ], className='twelve columns')
-    ]),
-    html.Br(),
-    html.Br(),
-    html.Div([
-        html.Div([
-            html.H3('Clustering (1962-2018)'),
-            dcc.Markdown("""
-                Segmentación en base a la centralidad de los países en cada rama de comercio.
-                
-            """, style={'fontSize':14})
-        ]),
-        html.Div([
-           dcc.Graph(id='mapa', figure=mapa) 
+            html.Label(['Fuente: ',html.A('Open Trade Statistics', href='https://tradestatistics.io/')], style={'fontSize':16}),
         ]), 
-        dcc.Markdown("""
+    ]),
+    dcc.Tabs(id='tabs',value='tab-1', children=[
+        dcc.Tab(id='tab-1', label='Red completa', children=[
+            html.Br(),
+            dcc.Markdown("""
+                    Para facilitar la visualización, por categoría seleccionada se muestran las exportaciones principales (máximos importes exportados por cada país hacia otro país). 
+                    Los datos corresponden al año 2018, en USD.  
+                    """, style={'fontSize':14}),
+            html.Div([
+                html.Div([
+                    dcc.Dropdown(id ='input_section',
+                                 options=[{'label': i, 'value': i} for i in sections.section.unique()],
+                                 multi=False,
+                                 value='Chemical Products',
+                                 clearable=False),
+
+                ], className='six columns'),
+                html.Div([
+                     visdcc.Network(id='network',
+                           data={'nodes': network.nodes,'edges': network.edges},
+                           options=config_layout)
+                ], className='twelve columns')
+            ])
+        ]), 
+        dcc.Tab(id='tab-2',label='Ego network', children=[
+            html.Div([
+                html.Br(),
+                dcc.Markdown("""
+                    En esta sección se puede visualizar la red ego de un país, para un producto determinado. 
+                    La red ego consiste de un **nodo central (país seleccionado, 'ego')** y los **nodos con los cuales está conectado ('alters', serían los 5 principales destinos de sus exportaciones del producto seleccionado)**.
+                    Es posible expandir el radio de la red ego, visualizando, además de sus principales destinos de exportación de este producto, los 5 principales destinos de exportación del mismo producto para cada uno de sus 5 principales socios comerciales. 
+                    """, style={'fontSize':14}),
+                html.Div([
+                    html.Div([
+                        html.P('País'),
+                        dcc.Dropdown(id ='input_pais',
+                                 options=[{'label': i, 'value': i} for i in df.reporter.unique()],
+                                 multi=False,
+                                 value='Argentina',
+                                 clearable=False),
+                    ], className='six columns'),
+                    html.Div([
+                        html.P('Producto'),
+                        dcc.Dropdown(id ='input_section2',
+                                 options=[{'label': i, 'value': i} for i in sections.section.unique()],
+                                 multi=False,
+                                 value='Chemical Products',
+                                 clearable=False),
+                    ], className='six columns'),
+
+                ], className='row'),
+                html.Br(),
+                html.Div([
+                   html.Div([
+                    html.Div([
+                        html.P('Radio'),
+                    ]),
+                    html.Div([
+                       dcc.Slider(id='slider_radio',
+                                min=1, max=4, step=1, value=1, 
+                                marks={
+                                    1: {'label': '1'},
+                                    2: {'label': '2'},
+                                    3: {'label': '3'},
+                                    4: {'label': '4'}
+                                }) 
+                    ]) 
+                    ], className='two columns'),
+                    html.Div([
+                         visdcc.Network(id='network2',
+                               data={},
+                               options=config_layout)
+                    ], className='ten columns') 
+                ])
                 
-                La centralidad consderada en este caso es **'out degree centrality'**, que mide para cada nodo (país) la fracción de nodos (países) a los que se conecta por enlaces salientes (exportaciones).
-                
-                El algoritmo utilizado es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
-            
-                Hay exportaciones que quedaron fuera de la visualización pero igualmente fueron tenidas en cuenta al generar las variables para clusterizar.  
-                                
-        """, style={'fontSize':14})
+            ])
+        ]), 
+        dcc.Tab(id='tab3', label='Clustering (1962-2018)', children=[
+            html.Div([
+                html.Br(),
+                html.Div([
+                    dcc.Markdown("""
+                        Segmentación en base a la centralidad de los países en cada rama de comercio.
+
+                    """, style={'fontSize':14})
+                ]),
+                html.Div([
+                   dcc.Graph(id='mapa', figure=mapa) 
+                ]), 
+                dcc.Markdown("""
+
+                        La centralidad consderada en este caso es **'out degree centrality'**, que mide para cada nodo (país) la fracción de nodos (países) a los que se conecta por enlaces salientes (exportaciones).
+
+                        El algoritmo utilizado es **kmeans**, considerando 3 segmentos en base al 'elbow method'. 
+
+                        Hay exportaciones que quedaron fuera de la visualización pero igualmente fueron tenidas en cuenta al generar las variables para clusterizar.  
+
+                """, style={'fontSize':14})
+            ]),
+        ])
     ]), 
-    html.Label(['tw: ', html.A('@karbartolome', href='https://twitter.com/karbartolome')], style={'fontSize':16})
+    html.Div([
+        html.Label(['ln: ', html.A('karinabartolome', href='https://www.linkedin.com/in/karinabartolome/')], style={'fontSize':16})
+        ]),
+    html.Div([
+        html.Label(['tw: ', html.A('@karbartolome', href='https://twitter.com/karbartolome')], style={'fontSize':16})
+        ])
+    
+    
 ])
 
 
@@ -216,6 +332,46 @@ def update_output(value):
     return data
 
 
+@app.callback(
+    Output('network2', 'data'),
+    [
+     Input('input_pais', 'value'), 
+     Input('slider_radio', 'value'), 
+     Input('input_section2', 'value')
+    ]
+)
+def update_output(pais, radio, section):
+    
+    red_particular=(df[df.section==section].copy()
+        .set_index(['partner','section', 'color','continent_partner'])
+        .groupby(['reporter','continent_reporter']).export_value_usd.nlargest(5).reset_index())
+
+    G = nx.from_pandas_edgelist(df = red_particular,
+                                source = 'reporter',
+                                target = 'partner',
+                                edge_attr = True, 
+                                create_using=nx.DiGraph())
+    
+    
+    attr_dict_grupo = df.set_index('reporter')['color'].to_dict()
+    nx.set_node_attributes(G, values = attr_dict_grupo, name = 'color')
+
+    S = nx.ego_graph(G, 
+                 pais, 
+                 radius=radio, 
+                 center=True, 
+                 undirected=False, 
+                 distance=None)
+
+    network_particular = draw_pyvis(S)
+    
+    data ={'nodes': network_particular.nodes,
+           'edges': network_particular.edges}
+    
+    return data
+    
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(port='8124')
+    
+    
