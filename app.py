@@ -28,17 +28,14 @@ def human_format(number):
     else:
         return 0
     
-    
-
 def draw_pyvis(networkx_graph):
    
-    pyvis_graph = Network(
-        height="750px", 
-        width="100%", 
+    pyvis_graph = Network( 
         bgcolor="white", 
         font_color="black",
         notebook=False, 
-        directed=True)
+        directed=True
+    )
 
     for node,node_attrs in networkx_graph.nodes(data=True):
         node_attrs['label']=node
@@ -52,11 +49,7 @@ def draw_pyvis(networkx_graph):
         pyvis_graph.add_edge(str(source),str(target),**edge_attrs)
         
     return pyvis_graph 
-    
-    
-    
-    
-
+      
 
 df = pd.read_csv('df.csv')
 
@@ -68,7 +61,6 @@ network = Network(
     notebook=False, 
     directed=True
 )
-
 
 config_layout={
    'height': '1000px', 'width': '100%',
